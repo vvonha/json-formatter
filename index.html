@@ -1,261 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JSON Formatter - Format & Validate JSON Online Free</title>
-  <meta name="description" content="Free online JSON formatter and validator. Format, beautify, minify, and validate JSON data instantly. Syntax highlighting included.">
-  <meta name="keywords" content="json formatter, json validator, format json, beautify json, minify json, json online">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8581458440606037" crossorigin="anonymous"></script>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'SF Mono', Consolas, monospace; background: #1e1e1e; color: #d4d4d4; min-height: 100vh; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-    h1 { text-align: center; margin: 20px 0; font-size: 2rem; font-family: system-ui, sans-serif; }
-    .subtitle { text-align: center; color: #888; margin-bottom: 20px; font-family: system-ui, sans-serif; }
-    
-    .toolbar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
-      background: #252526;
-      padding: 15px;
-      border-radius: 8px;
-    }
-    .toolbar button {
-      padding: 10px 20px;
-      background: #0e639c;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-    .toolbar button:hover { background: #1177bb; }
-    .toolbar button.secondary { background: #3c3c3c; }
-    .toolbar button.secondary:hover { background: #505050; }
-    
-    .editor-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-    .editor-panel {
-      background: #252526;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .panel-header {
-      background: #3c3c3c;
-      padding: 10px 15px;
-      font-size: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .status { font-size: 0.8rem; }
-    .status.valid { color: #4ec9b0; }
-    .status.invalid { color: #f14c4c; }
-    
-    textarea {
-      width: 100%;
-      height: 500px;
-      padding: 15px;
-      background: #1e1e1e;
-      color: #d4d4d4;
-      border: none;
-      font-family: 'SF Mono', Consolas, monospace;
-      font-size: 14px;
-      line-height: 1.5;
-      resize: vertical;
-    }
-    textarea:focus { outline: 1px solid #0e639c; }
-    
-    .output-area {
-      width: 100%;
-      height: 500px;
-      padding: 15px;
-      background: #1e1e1e;
-      overflow: auto;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-    
-    /* Syntax highlighting */
-    .string { color: #ce9178; }
-    .number { color: #b5cea8; }
-    .boolean { color: #569cd6; }
-    .null { color: #569cd6; }
-    .key { color: #9cdcfe; }
-    .bracket { color: #ffd700; }
-    
-    .ad-space { background: #252526; padding: 20px; text-align: center; margin: 20px 0; border-radius: 8px; }
-    footer { text-align: center; padding: 30px; color: #666; font-family: system-ui, sans-serif; }
-    a { color: #0e639c; }
-    
-    @media (max-width: 800px) {
-      .editor-container { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator - Pretty Print JSON</title>
+    <meta name="description" content="Format, validate, and beautify JSON online. Pretty print JSON with syntax highlighting. Free JSON formatter tool.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#06b6d4;--bg:#0a0a0f;--card:#111118;--text:#fff;--text-muted:#71717a;--border:rgba(255,255,255,0.06);--gradient:linear-gradient(135deg,#06b6d4 0%,#22d3ee 100%)}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+        .container{max-width:1000px;margin:0 auto;padding:24px}
+        
+        header{text-align:center;padding:40px 0 30px}
+        .logo{font-size:3rem;margin-bottom:16px}
+        h1{font-size:2.2rem;font-weight:800;margin-bottom:12px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .subtitle{color:var(--text-muted);font-size:1rem}
+        
+        .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;margin-bottom:20px}
+        
+        .editor-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .editor-panel h3{margin-bottom:12px;font-size:0.95rem;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+        textarea{width:100%;height:400px;padding:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:14px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:var(--text);resize:vertical}
+        textarea:focus{outline:none;border-color:var(--primary)}
+        textarea::placeholder{color:var(--text-muted)}
+        
+        .output-area{width:100%;height:400px;padding:20px;background:rgba(6,182,212,0.05);border:1px solid var(--primary);border-radius:14px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;overflow:auto;white-space:pre-wrap;word-break:break-word}
+        
+        .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+        .btn{padding:14px 24px;border:none;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:8px}
+        .btn-primary{background:var(--gradient);color:#fff;box-shadow:0 4px 15px rgba(6,182,212,0.3)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(6,182,212,0.4)}
+        .btn-secondary{background:rgba(255,255,255,0.05);color:var(--text)}
+        .btn-secondary:hover{background:rgba(255,255,255,0.1)}
+        
+        .status{padding:12px 20px;border-radius:10px;margin-bottom:20px;display:none;font-weight:500}
+        .status.success{display:block;background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2)}
+        .status.error{display:block;background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.2)}
+        
+        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:20px}
+        .stat-item{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px;text-align:center}
+        .stat-item span{display:block;color:var(--text-muted);font-size:0.8rem;margin-bottom:4px}
+        .stat-item strong{font-size:1.2rem;color:var(--primary)}
+        
+        footer{text-align:center;padding:40px 20px;color:var(--text-muted);font-size:0.9rem}
+        footer a{color:var(--primary);text-decoration:none}
+        
+        .json-string{color:#a5d6ff}
+        .json-number{color:#79c0ff}
+        .json-boolean{color:#ff7b72}
+        .json-null{color:#ff7b72}
+        .json-key{color:#7ee787}
+        .json-bracket{color:#8b949e}
+        
+        @media(max-width:768px){
+            .editor-grid{grid-template-columns:1fr}
+            textarea,.output-area{height:300px}
+            h1{font-size:1.8rem}
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>{ } JSON Formatter</h1>
-    <p class="subtitle">Format, validate, and beautify JSON instantly</p>
-    
-    <div class="ad-space">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-    
-    <div class="toolbar">
-      <button onclick="formatJSON()">✨ Format / Beautify</button>
-      <button onclick="minifyJSON()">📦 Minify</button>
-      <button onclick="validateJSON()">✅ Validate</button>
-      <button class="secondary" onclick="copyOutput()">📋 Copy Output</button>
-      <button class="secondary" onclick="clearAll()">🗑️ Clear</button>
-      <button class="secondary" onclick="loadSample()">📝 Sample</button>
-    </div>
-    
-    <div class="editor-container">
-      <div class="editor-panel">
-        <div class="panel-header">
-          <span>Input JSON</span>
-          <span class="status" id="inputStatus"></span>
+    <div class="container">
+        <header>
+            <div class="logo">{ }</div>
+            <h1>JSON Formatter & Validator</h1>
+            <p class="subtitle">Format, validate, and beautify your JSON data</p>
+        </header>
+        
+        <div class="card">
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="formatJSON()">✨ Format</button>
+                <button class="btn btn-secondary" onclick="minifyJSON()">📦 Minify</button>
+                <button class="btn btn-secondary" onclick="copyOutput()">📋 Copy</button>
+                <button class="btn btn-secondary" onclick="clearAll()">🗑️ Clear</button>
+                <button class="btn btn-secondary" onclick="loadSample()">📝 Sample</button>
+            </div>
+            
+            <div class="status" id="status"></div>
+            
+            <div class="editor-grid">
+                <div class="editor-panel">
+                    <h3>📥 Input JSON</h3>
+                    <textarea id="input" placeholder='Paste your JSON here...\n\n{"name": "John", "age": 30}'></textarea>
+                </div>
+                <div class="editor-panel">
+                    <h3>📤 Formatted Output</h3>
+                    <div class="output-area" id="output">Formatted JSON will appear here...</div>
+                </div>
+            </div>
+            
+            <div class="stats" id="stats" style="display:none">
+                <div class="stat-item">
+                    <span>Keys</span>
+                    <strong id="stat-keys">0</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Depth</span>
+                    <strong id="stat-depth">0</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Size</span>
+                    <strong id="stat-size">0 B</strong>
+                </div>
+                <div class="stat-item">
+                    <span>Arrays</span>
+                    <strong id="stat-arrays">0</strong>
+                </div>
+            </div>
         </div>
-        <textarea id="input" placeholder="Paste your JSON here..."></textarea>
-      </div>
-      
-      <div class="editor-panel">
-        <div class="panel-header">
-          <span>Output</span>
-          <span class="status" id="outputStatus"></span>
-        </div>
-        <div class="output-area" id="output">Formatted JSON will appear here...</div>
-      </div>
-    </div>
-    
-    <div class="ad-space">
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
     
     <footer>
-      <p>Made with ❤️ | <a href="https://vvonha.github.io/crypto-funding-scanner/">More Free Tools</a></p>
+        <p>© 2026 <a href="https://t.me/vvonha">@vvonha</a> · More tools at vvonha.github.io</p>
     </footer>
-  </div>
-  
-  <script>
-    const input = document.getElementById('input');
-    const output = document.getElementById('output');
-    const inputStatus = document.getElementById('inputStatus');
-    const outputStatus = document.getElementById('outputStatus');
     
-    // Real-time validation
-    input.addEventListener('input', () => {
-      validateJSON(true);
-    });
-    
-    function formatJSON() {
-      try {
-        const json = JSON.parse(input.value);
-        const formatted = JSON.stringify(json, null, 2);
-        output.innerHTML = syntaxHighlight(formatted);
-        setStatus('valid', 'Valid JSON ✓');
-      } catch (e) {
-        output.textContent = 'Error: ' + e.message;
-        setStatus('invalid', 'Invalid JSON ✗');
-      }
-    }
-    
-    function minifyJSON() {
-      try {
-        const json = JSON.parse(input.value);
-        const minified = JSON.stringify(json);
-        output.textContent = minified;
-        setStatus('valid', `Minified (${minified.length} chars)`);
-      } catch (e) {
-        output.textContent = 'Error: ' + e.message;
-        setStatus('invalid', 'Invalid JSON ✗');
-      }
-    }
-    
-    function validateJSON(silent = false) {
-      try {
-        JSON.parse(input.value);
-        inputStatus.textContent = '✓ Valid';
-        inputStatus.className = 'status valid';
-        if (!silent) {
-          output.textContent = '✓ JSON is valid!';
-          setStatus('valid', 'Valid JSON');
+    <script>
+        function formatJSON() {
+            const input = document.getElementById('input').value.trim();
+            const status = document.getElementById('status');
+            const output = document.getElementById('output');
+            
+            if (!input) {
+                showStatus('error', '❌ Please enter some JSON');
+                return;
+            }
+            
+            try {
+                const parsed = JSON.parse(input);
+                const formatted = JSON.stringify(parsed, null, 2);
+                output.innerHTML = syntaxHighlight(formatted);
+                showStatus('success', '✅ Valid JSON - Formatted successfully');
+                updateStats(parsed, formatted);
+            } catch (e) {
+                showStatus('error', '❌ Invalid JSON: ' + e.message);
+                output.textContent = 'Error: ' + e.message;
+            }
         }
-        return true;
-      } catch (e) {
-        inputStatus.textContent = '✗ Invalid';
-        inputStatus.className = 'status invalid';
-        if (!silent) {
-          output.textContent = '✗ Error: ' + e.message;
-          setStatus('invalid', 'Invalid JSON');
+        
+        function minifyJSON() {
+            const input = document.getElementById('input').value.trim();
+            try {
+                const parsed = JSON.parse(input);
+                const minified = JSON.stringify(parsed);
+                document.getElementById('output').textContent = minified;
+                showStatus('success', '✅ JSON minified');
+            } catch (e) {
+                showStatus('error', '❌ Invalid JSON: ' + e.message);
+            }
         }
-        return false;
-      }
-    }
-    
-    function syntaxHighlight(json) {
-      json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
-        let cls = 'number';
-        if (/^"/.test(match)) {
-          if (/:$/.test(match)) {
-            cls = 'key';
-            match = match.slice(0, -1) + '</span><span class="bracket">:</span>';
-            return '<span class="' + cls + '">' + match;
-          } else {
-            cls = 'string';
-          }
-        } else if (/true|false/.test(match)) {
-          cls = 'boolean';
-        } else if (/null/.test(match)) {
-          cls = 'null';
+        
+        function syntaxHighlight(json) {
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'json-number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'json-key';
+                    } else {
+                        cls = 'json-string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'json-boolean';
+                } else if (/null/.test(match)) {
+                    cls = 'json-null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
         }
-        return '<span class="' + cls + '">' + match + '</span>';
-      }).replace(/[{}\[\]]/g, '<span class="bracket">$&</span>');
-    }
-    
-    function setStatus(type, message) {
-      outputStatus.textContent = message;
-      outputStatus.className = 'status ' + type;
-    }
-    
-    function copyOutput() {
-      navigator.clipboard.writeText(output.textContent || output.innerText);
-      alert('Copied to clipboard!');
-    }
-    
-    function clearAll() {
-      input.value = '';
-      output.innerHTML = 'Formatted JSON will appear here...';
-      inputStatus.textContent = '';
-      outputStatus.textContent = '';
-    }
-    
-    function loadSample() {
-      const sample = {
-        "name": "John Doe",
-        "age": 30,
-        "email": "john@example.com",
-        "isActive": true,
-        "roles": ["admin", "user"],
-        "address": {
-          "city": "New York",
-          "zip": "10001"
+        
+        function showStatus(type, message) {
+            const status = document.getElementById('status');
+            status.className = 'status ' + type;
+            status.textContent = message;
         }
-      };
-      input.value = JSON.stringify(sample);
-      formatJSON();
-    }
-  </script>
+        
+        function updateStats(obj, str) {
+            document.getElementById('stats').style.display = 'grid';
+            document.getElementById('stat-keys').textContent = countKeys(obj);
+            document.getElementById('stat-depth').textContent = getDepth(obj);
+            document.getElementById('stat-size').textContent = formatBytes(str.length);
+            document.getElementById('stat-arrays').textContent = countArrays(obj);
+        }
+        
+        function countKeys(obj) {
+            let count = 0;
+            function traverse(o) {
+                if (typeof o === 'object' && o !== null) {
+                    if (Array.isArray(o)) {
+                        o.forEach(traverse);
+                    } else {
+                        count += Object.keys(o).length;
+                        Object.values(o).forEach(traverse);
+                    }
+                }
+            }
+            traverse(obj);
+            return count;
+        }
+        
+        function getDepth(obj) {
+            if (typeof obj !== 'object' || obj === null) return 0;
+            return 1 + Math.max(0, ...Object.values(obj).map(getDepth));
+        }
+        
+        function countArrays(obj) {
+            let count = 0;
+            function traverse(o) {
+                if (Array.isArray(o)) { count++; o.forEach(traverse); }
+                else if (typeof o === 'object' && o !== null) Object.values(o).forEach(traverse);
+            }
+            traverse(obj);
+            return count;
+        }
+        
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+        
+        function copyOutput() {
+            const output = document.getElementById('output').textContent;
+            navigator.clipboard.writeText(output);
+            showStatus('success', '📋 Copied to clipboard');
+        }
+        
+        function clearAll() {
+            document.getElementById('input').value = '';
+            document.getElementById('output').textContent = 'Formatted JSON will appear here...';
+            document.getElementById('status').className = 'status';
+            document.getElementById('stats').style.display = 'none';
+        }
+        
+        function loadSample() {
+            const sample = {
+                "name": "John Doe",
+                "age": 30,
+                "email": "john@example.com",
+                "isActive": true,
+                "address": {
+                    "street": "123 Main St",
+                    "city": "New York",
+                    "country": "USA"
+                },
+                "hobbies": ["reading", "gaming", "coding"],
+                "scores": [95, 87, 92]
+            };
+            document.getElementById('input').value = JSON.stringify(sample);
+            formatJSON();
+        }
+    </script>
 </body>
 </html>
